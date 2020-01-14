@@ -1,0 +1,60 @@
+1: sqlite3 customer.db
+
+2:
+import csv, sqlite3
+con = sqlite3.connect(":memory:")
+cur = con.cursor()
+
+cur.executescript("""DROP TABLE IF EXIST attendance;
+                     CREATE TABLE attendance(employeeId INTEGER,
+                     attendanceDate DATE NOT NULL,
+                     PRIMARY KEY(employeeId, attendanceDate),
+                     FOREIGN KEY(employeeId) REFERENCES employeeMaster(employeeId)""");
+
+
+cur.executescript("""DROP TABLE IF EXIST holidayMaster;
+                     CREATE TABLE holidayMaster(holidayDate DATE NOT NULL PRIMARY KEY,
+							holidayName TEXT NOT NULL(employeeId)""");
+
+cur.executescript("""DROP TABLE IF EXIST attendance;
+                     CREATE TABLE employeeMaster(employeeId INTEGER PRIMARY KEY,
+						 employeeName TEXT NOT NULL UNIQUE,
+						 employeeEmail TEXT);""")
+
+with open("attendance.csv", 'r') as file:
+    csv_file = csv.DictReader(file)
+    for row in csv_file:
+        print(dict(row))
+
+with open("employee.csv", 'r') as file:
+    csv_file = csv.DictReader(file)
+    for row in csv_file:
+        print(dict(row))
+
+
+with open("holiday.csv", 'r') as file:
+    csv_file = csv.DictReader(file)
+    for row in csv_file:
+        print(dict(row))
+
+
+
+
+4:
+
+cur = conn.cursor()
+
+cur.execute("SELECT * FROM holiday ORDER BY holidayname ASC")
+
+
+
+cur.execute(
+              SELECT "Total Number of Working Day";
+              SELECT COUNT(holidaydate.holidaymaster)-COUNT(attendance.attendancedate)
+              FROM holidaymaster,attendancedate;
+
+)
+
+
+
+ 
