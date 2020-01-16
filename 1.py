@@ -3,4 +3,4 @@ s = string.split()
 u = []
 for i in s:
     u.append(s.count(i))
-print(str(list(zip(s,u))))
+print(str(list(set((zip(s,u))))))
